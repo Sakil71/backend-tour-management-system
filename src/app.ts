@@ -16,7 +16,7 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
-// global err handler
+// Global error handler
 app.use(globalErrorHandler);
 
 // Not found route
