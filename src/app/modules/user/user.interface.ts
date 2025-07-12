@@ -14,7 +14,7 @@ export enum IsActive {
 }
 
 export interface IAuthProvider {
-  provider: string; // Google / Credential (email,pass)
+  provider: "google" | "credential"; // Google / Credential (email,pass)
   providerId: string;
 }
 
