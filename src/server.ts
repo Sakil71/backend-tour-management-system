@@ -3,11 +3,12 @@ import { Server } from "http";
 import mongoose from "mongoose";
 import app from "./app";
 import { envVars } from "./app/config/env";
+import { seedSuperAdmin } from "./app/utils/seedSuperAdmin";
 
 let server: Server;
 
 const startServer = async () => {
-  try {    
+  try {
     await mongoose.connect(envVars.DB_URL);
 
     console.log("connected to db");
@@ -19,7 +20,11 @@ const startServer = async () => {
   }
 };
 
-startServer();
+(async () => {
+  await startServer();
+  await seedSuperAdmin();
+})();
+
 // unhandled rejection error
 process.on("unhandledRejection", (err) => {
   console.log("Unhandled rejection detected... server shutting down", err);
@@ -48,9 +53,7 @@ process.on("uncaughtException", (err) => {
 });
 // signal termination error
 process.on("SIGTERM", () => {
-  console.log(
-    "signal termination rejection detected... server shutting down"
-  );
+  console.log("signal termination rejection detected... server shutting down");
 
   if (server) {
     server.close(() => {
@@ -61,9 +64,7 @@ process.on("SIGTERM", () => {
 });
 // signal Initialization error
 process.on("SIGINT", () => {
-  console.log(
-    "SIGINT termination rejection detected... server shutting down"
-  );
+  console.log("SIGINT termination rejection detected... server shutting down");
 
   if (server) {
     server.close(() => {
