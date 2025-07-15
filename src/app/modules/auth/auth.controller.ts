@@ -16,7 +16,21 @@ const credentialsLogin = catchAsync(
     });
   }
 );
+const getNewAccessToken = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    // const refreshToken = req.cookies.refresh;
+    const refreshToken = req.headers.authorization;
+    const tokenInfo = await AuthServices.getNewAccessToken(refreshToken as string);
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: "Logged in successfully",
+      data: tokenInfo,
+    });
+  }
+);
 
 export const AuthControllers = {
   credentialsLogin,
+  getNewAccessToken,
 };
