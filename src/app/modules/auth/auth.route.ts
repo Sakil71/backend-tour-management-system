@@ -9,6 +9,7 @@ const router = Router();
 
 router.post("/login", AuthControllers.credentialsLogin);
 router.post("/refresh-token", AuthControllers.getNewAccessToken);
+<<<<<<< HEAD
 router.post("/logout", AuthControllers.logout);
 router.post(
   "/reset-password",
@@ -32,5 +33,7 @@ router.get(
   passport.authenticate("google", { failureRedirect: "/login" }),
   AuthControllers.googleCallbackController
 );
+=======
+>>>>>>> 6893cd6ee5326580a2476fa5e7f6b9ed6bbcaa31
 
 export const AuthRoutes = router;

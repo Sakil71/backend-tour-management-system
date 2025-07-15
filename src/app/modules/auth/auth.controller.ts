@@ -24,6 +24,7 @@ const credentialsLogin = catchAsync(
 );
 const getNewAccessToken = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
+<<<<<<< HEAD
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
       throw new AppError(
@@ -39,10 +40,20 @@ const getNewAccessToken = catchAsync(
       success: true,
       statusCode: httpStatus.OK,
       message: "Access token generate successfully by refresh token",
+=======
+    // const refreshToken = req.cookies.refresh;
+    const refreshToken = req.headers.authorization;
+    const tokenInfo = await AuthServices.getNewAccessToken(refreshToken as string);
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: "Logged in successfully",
+>>>>>>> 6893cd6ee5326580a2476fa5e7f6b9ed6bbcaa31
       data: tokenInfo,
     });
   }
 );
+<<<<<<< HEAD
 const logout = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     res.clearCookie("accessToken", {
@@ -99,11 +110,16 @@ const resetPassword = catchAsync(
     });
   }
 );
+=======
+>>>>>>> 6893cd6ee5326580a2476fa5e7f6b9ed6bbcaa31
 
 export const AuthControllers = {
   credentialsLogin,
   getNewAccessToken,
+<<<<<<< HEAD
   logout,
   resetPassword,
   googleCallbackController,
+=======
+>>>>>>> 6893cd6ee5326580a2476fa5e7f6b9ed6bbcaa31
 };

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { JwtPayload } from "jsonwebtoken";
 import { envVars } from "../config/env";
 import { IsActive, IUser } from "../modules/user/user.interface";
@@ -5,6 +6,11 @@ import { generateToken, verifyToken } from "./jwt";
 import { User } from "../modules/user/user.model";
 import AppError from "../errorHelpers/AppError";
 import httpStatus from "http-status-codes";
+=======
+import { envVars } from "../config/env";
+import { IUser } from "../modules/user/user.interface";
+import { generateToken } from "./jwt";
+>>>>>>> 6893cd6ee5326580a2476fa5e7f6b9ed6bbcaa31
 
 export const createUserTokens = (user: Partial<IUser>) => {
   const jwtPayload = {
@@ -30,6 +36,7 @@ export const createUserTokens = (user: Partial<IUser>) => {
     refreshToken,
   };
 };
+<<<<<<< HEAD
 
 export const createNewAccessTokenByRefreshToken = async (
   refreshToken: string
@@ -70,3 +77,5 @@ export const createNewAccessTokenByRefreshToken = async (
 
   return accessToken;
 };
+=======
+>>>>>>> 6893cd6ee5326580a2476fa5e7f6b9ed6bbcaa31
